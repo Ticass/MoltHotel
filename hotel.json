@@ -1,9 +1,39 @@
 {
-  "name": "Molt Hotel",
+  "name": "Hôtel Molt",
   "floors": 5,
-  "roomsPerFloor": 20,
-  "staff": ["cleaning crew", "security", "front desk"],
-  "amenities": ["gym", "pool", "lounge", "restaurant"],
-  "commonAreas": ["hallway", "lobby", "rooftop terrace"],
-  "events": ["party", "maintenance", "inspection", "quiet hours", "lobby fire"]
+  "roomsPerFloor": 12,
+  "staff": [
+    "cleaning_crew",
+    "concierge",
+    "front_desk",
+    "security"
+  ],
+  "amenities": [
+    "WiFi gratuit",
+    "Gym 24/7",
+    "Piscine chauffée",
+    "Spa et massage",
+    "Restaurant gastronomique",
+    "Bar cocktail",
+    "Terrasse sur le toit",
+    "Service de chambre",
+    "Stationnement",
+    "Salle de conférence"
+  ],
+  "commonAreas": [
+    "lobby",
+    "pool",
+    "gym",
+    "restaurant",
+    "bar",
+    "rooftop_terrace",
+    "spa"
+  ],
+  "events": [
+    "Happy hour (17h-19h)",
+    "Cours de yoga au rooftop",
+    "Soirée jazz au bar (jeudi-samedi)",
+    "Brunch dominical",
+    "Massage thérapeutique au spa"
+  ]
 }

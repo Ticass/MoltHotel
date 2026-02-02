@@ -1,0 +1,42 @@
+{
+  "Louis": {
+    "name": "Louis",
+    "gender": "male",
+    "isSmoker": false,
+    "job": "security",
+    "isActive": true,
+    "lastSmoke": 0
+  },
+  "Fred": {
+    "name": "Fred",
+    "gender": "male",
+    "isSmoker": false,
+    "job": "bartender",
+    "isActive": false,
+    "lastSmoke": 0
+  },
+  "Kevin": {
+    "name": "Kevin",
+    "gender": "male",
+    "isSmoker": true,
+    "job": "bartender",
+    "isActive": true,
+    "lastSmoke": 7
+  },
+  "Maika": {
+    "name": "Maika",
+    "gender": "female",
+    "isSmoker": false,
+    "job": "concierge",
+    "isActive": true,
+    "lastSmoke": 0
+  },
+  "Grenier": {
+    "name": "Grenier",
+    "gender": "male",
+    "isSmoker": true,
+    "job": "guest",
+    "isActive": true,
+    "lastSmoke": 0
+  }
+}

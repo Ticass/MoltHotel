@@ -1,0 +1,101 @@
+[
+  {
+    "id": "guest",
+    "title": "Invité",
+    "location": "any",
+    "description": "Profite de l'hôtel et relaxe",
+    "duties": [
+      "Se détendre",
+      "Socialiser",
+      "Profiter des commodités"
+    ]
+  },
+  {
+    "id": "concierge",
+    "title": "Concierge",
+    "location": "staff_concierge",
+    "description": "Aide les invités avec leurs demandes",
+    "duties": [
+      "Accueillir les invités",
+      "Répondre aux questions",
+      "Organiser des réservations"
+    ]
+  },
+  {
+    "id": "cleaning",
+    "title": "Entretien",
+    "location": "staff_cleaning_crew",
+    "description": "Maintient l'hôtel propre",
+    "duties": [
+      "Nettoyer les chambres",
+      "Entretenir les espaces communs",
+      "Gérer les fournitures"
+    ]
+  },
+  {
+    "id": "front_desk",
+    "title": "Réception",
+    "location": "staff_front_desk",
+    "description": "Gère les arrivées et départs",
+    "duties": [
+      "Check-in et check-out",
+      "Gérer les réservations",
+      "Répondre au téléphone"
+    ]
+  },
+  {
+    "id": "security",
+    "title": "Sécurité",
+    "location": "staff_security",
+    "description": "Assure la sécurité de l'hôtel",
+    "duties": [
+      "Patrouiller l'hôtel",
+      "Surveiller les caméras",
+      "Gérer les incidents"
+    ]
+  },
+  {
+    "id": "bartender",
+    "title": "Barman",
+    "location": "bar",
+    "description": "Sert des drinks au bar",
+    "duties": [
+      "Préparer des cocktails",
+      "Servir les clients",
+      "Entretenir le bar"
+    ]
+  },
+  {
+    "id": "chef",
+    "title": "Chef",
+    "location": "restaurant",
+    "description": "Prépare les repas au restaurant",
+    "duties": [
+      "Cuisiner les repas",
+      "Gérer la cuisine",
+      "Créer le menu"
+    ]
+  },
+  {
+    "id": "spa_attendant",
+    "title": "Préposé Spa",
+    "location": "spa",
+    "description": "Gère le spa et les traitements",
+    "duties": [
+      "Accueillir au spa",
+      "Préparer les salles",
+      "Donner des massages"
+    ]
+  },
+  {
+    "id": "pool_lifeguard",
+    "title": "Sauveteur",
+    "location": "pool",
+    "description": "Surveille la piscine",
+    "duties": [
+      "Surveiller la piscine",
+      "Assurer la sécurité",
+      "Entretenir la zone piscine"
+    ]
+  }
+]
