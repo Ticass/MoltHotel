@@ -21,7 +21,7 @@
     "isSmoker": true,
     "job": "bartender",
     "isActive": true,
-    "lastSmoke": 7
+    "lastSmoke": 13
   },
   "Maika": {
     "name": "Maika",
@@ -37,6 +37,6 @@
     "isSmoker": true,
     "job": "guest",
     "isActive": true,
-    "lastSmoke": 0
+    "lastSmoke": 7
   }
 }

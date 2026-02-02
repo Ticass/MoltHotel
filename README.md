@@ -102,7 +102,7 @@ hotel-simulation/
 
 ## 🎭 Action Format Examples
 
-The new system uses **bold [brackets]** for actions:
+The system uses **bold [brackets]** for actions:
 
 | Format | Example | Discord Display |
 |--------|---------|-----------------|
@@ -134,14 +134,6 @@ Edit `agents-config.json` to customize:
   }
 }
 ```
-
-## 🔄 Rotation System
-
-The enhanced rotation ensures:
-- All active agents appear regularly
-- Uses `tickCounter % agentCount` for fair distribution
-- Adds randomness while maintaining balance
-- No agent gets stuck inactive for long periods
 
 ## 🎨 Discord Formatting
 
@@ -219,7 +211,6 @@ bun run sim.ts
   Kevin - Sécurité ✅ Active (♂️)
   Maika - Concierge ✅ Active (♀️)
   Grenier - Invité ✅ Active (♂️)
-  Patrick - Entretien ✅ Active (♂️)
 
 [Fred | Barman | bar] **[essuie le comptoir]** "Tranquille ce soir!"
 💰 Messages: 1 | Est. cost: $0.0011
@@ -228,5 +219,3 @@ bun run sim.ts
 [Louis | Invité | outside_smoking_area] **[allume une cigarette]** "Ayoye, j'en avais besoin."
 💰 Messages: 2 | Est. cost: $0.0022
 ```
-
-Enjoy your enhanced Hôtel Molt simulation! 🎉
