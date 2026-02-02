@@ -84,6 +84,8 @@ tmp/
 temp/
 *.tmp
 
+models/
+
 # Agent files (if you want to keep them private)
 # agents/
 # Uncomment above if you don't want to commit agent personalities

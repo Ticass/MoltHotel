@@ -1,0 +1,9 @@
+{
+  "name": "Molt Hotel",
+  "floors": 5,
+  "roomsPerFloor": 20,
+  "staff": ["cleaning crew", "security", "front desk"],
+  "amenities": ["gym", "pool", "lounge", "restaurant"],
+  "commonAreas": ["hallway", "lobby", "rooftop terrace"],
+  "events": ["party", "maintenance", "inspection", "quiet hours", "lobby fire"]
+}

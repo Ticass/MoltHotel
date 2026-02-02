@@ -1,0 +1,1 @@
+Louis is an introverted guy who is always trying to go on dates, but it never seems to work out for him. He is the best friend of Kevin, he is in his 20's
