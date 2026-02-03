@@ -18,15 +18,6 @@
     "Stationnement",
     "Salle de conférence"
   ],
-  "commonAreas": [
-    "lobby",
-    "pool",
-    "gym",
-    "restaurant",
-    "bar",
-    "rooftop_terrace",
-    "spa"
-  ],
   "events": [
     "Happy hour (17h-19h)",
     "Cours de yoga au rooftop",
@@ -114,13 +105,6 @@
       "connections": [
         "hall_1"
       ]
-    },
-    "gym": {
-      "floor": 2,
-      "staff_only": false,
-      "is_private_room": false,
-      "description": "Fitness center with various cardio and weight machines.",
-      "connections": []
     },
     "outside_smoking_area": {
       "floor": 1,

@@ -4,14 +4,14 @@
     "gender": "male",
     "isSmoker": false,
     "job": "security",
-    "isActive": true,
+    "isActive": false,
     "lastSmoke": 0
   },
   "Fred": {
     "name": "Fred",
     "gender": "male",
     "isSmoker": false,
-    "job": "bartender",
+    "job": "guest",
     "isActive": true,
     "lastSmoke": 0,
     "isMoving": false
@@ -39,14 +39,15 @@
     "isSmoker": true,
     "job": "guest",
     "isActive": true,
-    "lastSmoke": 15
+    "lastSmoke": 24,
+    "isMoving": false
   },
   "François": {
     "name": "François",
     "gender": "male",
     "isSmoker": false,
     "job": "chef",
-    "isActive": true,
+    "isActive": false,
     "lastSmoke": 0
   },
   "Thierry": {
