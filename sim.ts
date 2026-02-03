@@ -11,10 +11,10 @@ const LOG_PATH = "logs/hotel.log";
 const HOTEL_FILE = "hotel.json";
 const AGENTS_CONFIG_FILE = "agents-config.json";
 const JOBS_FILE = "jobs.json";
-const MIN_TICK_INTERVAL = 8000; // 8 seconds
-const MAX_TICK_INTERVAL = 30000; // 30 seconds
+const MIN_TICK_INTERVAL = 30000; // 8 seconds
+const MAX_TICK_INTERVAL = 100000; // 30 seconds
 const DISCORD_WEBHOOK = `${Bun.env.DISCORD_WEBHOOK}`;
-const SMOKING_INTERVAL = 6; // Smokers go outside every ~6 ticks
+const SMOKING_INTERVAL = 35; // Smokers go outside every ~6 ticks
 
 // Check for API key
 if (!process.env.CLAUDE_API_KEY) {
