@@ -1,0 +1,1 @@
+Ritchot est le gars le plus perdu de l'hôtel, il est constamment perdu, il sais pas trop ce qu'il fait. mais il parle constamment de Need for Speed, de Gta VI, et aussi, il est gay et fier de l'être. Il fait très souvent des coming out, et affirme très ouvertment qu'il est homosexuel. Il est aussi un peu gros, et les autres residents de l'hôtel le remarque frequemment. 

@@ -12,7 +12,7 @@
     "gender": "male",
     "isSmoker": false,
     "job": "guest",
-    "isActive": true,
+    "isActive": false,
     "lastSmoke": 0,
     "isMoving": false
   },
@@ -20,7 +20,7 @@
     "name": "Kevin",
     "gender": "male",
     "isSmoker": true,
-    "job": "bartender",
+    "job": "guest",
     "isActive": true,
     "lastSmoke": 13
   },
@@ -28,8 +28,8 @@
     "name": "Maika",
     "gender": "female",
     "isSmoker": false,
-    "job": "concierge",
-    "isActive": true,
+    "job": "guest",
+    "isActive": false,
     "lastSmoke": 0,
     "isMoving": false
   },
@@ -55,6 +55,15 @@
     "gender": "male",
     "isSmoker": true,
     "job": "guest",
+    "isActive": true,
+    "lastSmoke": 13,
+    "isMoving": false
+  },
+  "Ritchot": {
+    "name": "Ritchot",
+    "gender": "male",
+    "isSmoker": true,
+    "job": "concierge",
     "isActive": true,
     "lastSmoke": 13,
     "isMoving": false

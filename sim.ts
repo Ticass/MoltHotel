@@ -138,35 +138,35 @@ function findPath(fromLocation: string, toLocation: string): string[] {
     // Check if both locations exist
     const from = hotelContext.locations[fromLocation];
     const to = hotelContext.locations[toLocation];
-    
+
     if (!from || !to) {
         console.error(`❌ Location not found: ${!from ? fromLocation : toLocation}`);
         return [];
     }
-    
+
     // Same location - no path needed
     if (fromLocation === toLocation) {
         return [toLocation];
     }
-    
+
     // Must be on same floor (elevators not implemented yet)
     if (from.floor !== to.floor) {
         console.error(`❌ Cannot reach ${toLocation} from ${fromLocation} - different floors (elevators not implemented)`);
         return [];
     }
-    
+
     // BFS to find shortest path
-    const queue: Array<{location: string, path: string[]}> = [{location: fromLocation, path: [fromLocation]}];
+    const queue: Array<{ location: string, path: string[] }> = [{ location: fromLocation, path: [fromLocation] }];
     const visited = new Set<string>([fromLocation]);
-    
+
     while (queue.length > 0) {
-        const {location, path} = queue.shift()!;
-        
+        const { location, path } = queue.shift()!;
+
         // Found the target!
         if (location === toLocation) {
             return path;
         }
-        
+
         // Explore neighbors
         const currentLocation = hotelContext.locations[location];
         if (currentLocation && currentLocation.connections) {
@@ -174,16 +174,16 @@ function findPath(fromLocation: string, toLocation: string): string[] {
                 if (!visited.has(neighbor)) {
                     visited.add(neighbor);
                     const neighborFloor = hotelContext.locations[neighbor]?.floor;
-                    
+
                     // Only add neighbors on same floor
                     if (neighborFloor === from.floor) {
-                        queue.push({location: neighbor, path: [...path, neighbor]});
+                        queue.push({ location: neighbor, path: [...path, neighbor] });
                     }
                 }
             }
         }
     }
-    
+
     // No path found
     console.error(`❌ No path found from ${fromLocation} to ${toLocation}`);
     return [];
@@ -192,88 +192,88 @@ function findPath(fromLocation: string, toLocation: string): string[] {
 // ==== MOVEMENT CONTROLLER ==== //
 function moveAgent(agentName: string, target: string): boolean {
     const config = agentsConfig[agentName];
-    
+
     if (!config) {
         console.error(`❌ Agent ${agentName} not found`);
         return false;
     }
-    
+
     // Don't allow movement if already moving
     if (config.isMoving) {
         console.log(`⚠️  ${agentName} is already moving to ${config.movingTo}`);
         return false;
     }
-    
+
     // Find current location
     const currentLocation = agentPositions[agentName];
-    
+
     // Check if already at target
     if (currentLocation === target) {
         console.log(`ℹ️  ${agentName} is already at ${target}`);
         return false;
     }
-    
+
     // Find path to destination
     const path = findPath(currentLocation, target);
-    
+
     if (path.length === 0) {
         console.error(`❌ Cannot find path from ${currentLocation} to ${target}`);
         return false;
     }
-    
+
     // Remove first element (current location) since we're already there
     const movementPath = path.slice(1);
-    
+
     // All checks passed - start movement!
     config.isMoving = true;
     config.movingTo = target;
     config.movementPath = movementPath;
     config.movementProgress = movementPath.length; // Each step takes 1 tick
-    
+
     saveAgentsConfig();
     console.log(`🚶 ${agentName} starts moving from ${currentLocation} → ${target} (${movementPath.length} steps)`);
-    
+
     return true;
 }
 
 function updateMovement(agentName: string) {
     const config = agentsConfig[agentName];
-    
+
     if (!config || !config.isMoving || !config.movementPath) {
         return;
     }
-    
+
     // Move to next location in path
     const nextLocation = config.movementPath.shift();
-    
+
     if (nextLocation) {
         agentPositions[agentName] = nextLocation;
         console.log(`  📍 ${agentName} moved to ${nextLocation} (${config.movementPath.length} steps remaining)`);
     }
-    
+
     // Decrease movement progress
     config.movementProgress = (config.movementProgress || 0) - 1;
-    
+
     // Check if movement is complete
     if (config.movementProgress <= 0 || config.movementPath.length === 0) {
         // Agent has arrived!
         const destination = config.movingTo!;
         agentPositions[agentName] = destination;
-        
+
         config.isMoving = false;
         config.movingTo = undefined;
         config.movementPath = undefined;
         config.movementProgress = undefined;
-        
+
         console.log(`✅ ${agentName} arrived at ${destination}`);
-        
+
         // Log arrival
         if (!fs.existsSync("logs")) fs.mkdirSync("logs");
         const job = jobs[config.job];
         const logEntry = `\n[${new Date().toISOString()}] [${agentName.toUpperCase()} | ${job.title} | ${destination}]\n**[arrive à ${destination}]**\n`;
         fs.appendFileSync(LOG_PATH, logEntry);
     }
-    
+
     saveAgentsConfig();
 }
 
@@ -483,9 +483,7 @@ ${config.isSmoker ? "- Tu es fumeur/fumeuse et sors fumer de temps en temps" : "
 HÔTEL MOLT:
 - Nom: ${hotelContext.name}
 - Étages: ${hotelContext.floors} | Chambres: ${hotelContext.roomsPerFloor} par étage
-- Personnel: ${hotelContext.staff.join(", ")}
-- Commodités: ${hotelContext.amenities.join(", ")}
-- Événements: ${hotelContext.events.join(", ")}
+- Endroits accessibles: ${hotelContext.locations}
 
 AUTRES RÉSIDENTS/STAFF: ${agentContext}
 
@@ -495,7 +493,8 @@ INTERACTIONS SIGNIFICATIVES:
 - Initie des conversations ou activités avec les autres
 - Commente les événements récents de l'hôtel
 - Exprime tes émotions de façon authentique
-- Tu peux te déplacer dans l'hôtel (utilise tes jambes!)
+- Tu peux te déplacer dans l'hôtel (utilise tes jambes!, mais respecte les sales existantes et le contexte de l'hôtel, sinon tu perds des points)
+- Il n'y a pas de concept de monter ou de descendre, tout est sur 1 etage.
 
 FORMAT DE RÉPONSE:
 1. Si tu effectues une ACTION physique, utilise le format: **[fais l'action]** "dialogue optionnel"
@@ -533,7 +532,9 @@ RÈGLES:
 - Varie entre action seule, dialogue seul, ou les deux
 - Sois authentique selon ton humeur et ton rôle
 - Jamais de célébrités ou personnes externes
-- Nomme SEULEMENT les résidents/staff listés ci-haut`;
+- Nomme SEULEMENT les résidents/staff listés ci-haut
+- Fini toujours tes phrases, ne t'arrête pas sur ....., condense ce que tu dois dire sinon
+- ne JAMAIS couper tes phrases ou tes messages, tu dit tout ce que tu as à dire`;
 
     const userPrompt = `MAINTENANT:
 - Lieu: ${location} (Étage ${currentFloor})
@@ -547,7 +548,7 @@ ${recentOwnMessages || "..."}
 RÉCENTS ÉVÉNEMENTS À L'HÔTEL:
 ${recentLog || "Calme à l'hôtel"}
 
-Réponds naturellement selon ton rôle et ta situation. Si quelqu'un est présent, interagis avec ${pronoun}. Sinon, fais ton travail ou relaxe. N'oublie pas: actions en **[gras entre crochets]**, dialogue normal.`;
+Réponds naturellement selon ton rôle et ta situation. Si quelqu'un est présent, interagis avec ${pronoun}. Sinon, fais ton travail ou relaxe. N'oublie pas: actions en **[gras entre crochets]**, dialogue normal, tu réponds en 2-3 phrases naturelles, et tu finis TOUJOURS tes phraaes. !.`;
 
     try {
         const message = await anthropic.messages.create({
@@ -680,18 +681,18 @@ async function tick() {
         // Check if agent is currently moving
         if (config.isMoving) {
             updateMovement(agent);
-            
+
             // If still moving after update, skip normal behavior this tick
             if (agentsConfig[agent].isMoving) {
                 const currentLocation = agentPositions[agent];
                 const movingText = `**[marche vers ${config.movingTo}]**`;
                 console.log(`🚶 [${agent} | ${jobs[config.job].title} | en route] ${movingText}`);
-                
+
                 // Log the movement
                 if (!fs.existsSync("logs")) fs.mkdirSync("logs");
                 const logEntry = `\n[${new Date().toISOString()}] [${agent.toUpperCase()} | ${jobs[config.job].title} | ${currentLocation}]\n${movingText}\n`;
                 fs.appendFileSync(LOG_PATH, logEntry);
-                
+
                 continue; // Skip to next agent
             }
         }
@@ -744,9 +745,16 @@ async function tick() {
         // Enhanced mood tracking
         const lowerText = text.toLowerCase();
 
-        const angryWords = (lowerText.match(/tabarnak|câlisse|ostie|fâché|énerve|tanné/g) || []).length;
-        const happyWords = (lowerText.match(/ayoye|cool|malade|parfait|nice|haha|lol|content/g) || []).length;
-        const calmWords = (lowerText.match(/tranquille|calme|bon|ben|relax/g) || []).length;
+        const WORD_SETS = {
+            angry: /tabarnak|tabarnac|tabarnouche|câlisse|calisse|câlice|ostie|osti|esti|estie|criss|christ|maudit|maudite|maudine|fucké|enragé|fâché|faché|en criss|à boutte|à boute|pu capable|pus capable|tanné|tannée|écoeuré|ecoeuré|en tabarnak|en ostie/g,
+            happy: /ayoye|ayoille|cool|malade|parfait|nice|haha|hahaha|lol|mdr|content|contente|heureux|heureuse|capoté|capotant|le fun|trippant|je trippe|j'adore|excellent/g,
+            calm: /tranquille|calme|ben|bon|correct|relax|chill|zen|pas pire|ça va|ca va|ok|okay|pas stressé/g
+        }
+
+        const angryWords = (lowerText.match(WORD_SETS.angry) || []).length
+        const happyWords = (lowerText.match(WORD_SETS.happy) || []).length
+        const calmWords = (lowerText.match(WORD_SETS.calm) || []).length
+
 
         if (angryWords > 1) {
             memory.mood = "angry";
@@ -776,16 +784,9 @@ async function tick() {
         // Post to Discord
         await postToDiscordWebhook(agent, location, text);
 
-        // After smoking, move back to work location using movement system
+        // After smoking, move back to lobby
         if (location === "outside_smoking_area" && Math.random() > 0.6) {
-            const job = jobs[config.job];
-            if (job.location !== "any") {
-                moveAgent(agent, job.location);
-            } else {
-                const areas = hotelContext.commonAreas;
-                const randomArea = areas[Math.floor(Math.random() * areas.length)];
-                moveAgent(agent, randomArea);
-            }
+            moveAgent(agent, "lobby")
         }
 
         // Delay between agents in same tick
