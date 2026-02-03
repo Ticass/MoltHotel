@@ -1,7 +1,5 @@
 {
   "name": "Hôtel Molt",
-  "floors": 5,
-  "roomsPerFloor": 12,
   "staff": [
     "cleaning_crew",
     "concierge",
@@ -35,5 +33,103 @@
     "Soirée jazz au bar (jeudi-samedi)",
     "Brunch dominical",
     "Massage thérapeutique au spa"
-  ]
+  ],
+  "floors": 5,
+  "roomsPerFloor": 5,
+  "locations": {
+    "lobby": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": false,
+      "description": "Grand lobby with high ceilings, the front desk, and a waiting area.",
+      "connections": [
+        "hall_1"
+      ]
+    },
+    "hall_1": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": false,
+      "description": "First Hall containing the rooms 1-5 on first floor",
+      "connections": [
+        "room_A1",
+        "room_A2",
+        "room_A3",
+        "room_A4",
+        "room_A5",
+        "lobby"
+      ]
+    },
+    "room_A1": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": true,
+      "is_locked": false,
+      "owner": null,
+      "description": "Standard Single Room - Room 1",
+      "connections": [
+        "hall_1"
+      ]
+    },
+    "room_A2": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": true,
+      "is_locked": false,
+      "owner": null,
+      "description": "Standard Double Room - Room 2",
+      "connections": [
+        "hall_1"
+      ]
+    },
+    "room_A3": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": true,
+      "is_locked": false,
+      "owner": null,
+      "description": "Standard Single Room - Room 3",
+      "connections": [
+        "hall_1"
+      ]
+    },
+    "room_A4": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": true,
+      "is_locked": false,
+      "owner": null,
+      "description": "Superior Suite - Room 4",
+      "connections": [
+        "hall_1"
+      ]
+    },
+    "room_A5": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": true,
+      "is_locked": false,
+      "owner": null,
+      "description": "Accessible Standard Room - Room 5",
+      "connections": [
+        "hall_1"
+      ]
+    },
+    "gym": {
+      "floor": 2,
+      "staff_only": false,
+      "is_private_room": false,
+      "description": "Fitness center with various cardio and weight machines.",
+      "connections": []
+    },
+    "outside_smoking_area": {
+      "floor": 1,
+      "staff_only": false,
+      "is_private_room": false,
+      "description": "Outside area, 5 feet away from the main door, for smokers to smoke",
+      "connections": [
+        "lobby"
+      ]
+    }
+  }
 }
